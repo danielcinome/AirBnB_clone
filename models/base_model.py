@@ -4,6 +4,8 @@
 """
 from uuid import uuid4
 from datetime import datetime
+from models import storage
+import json
 
 
 class BaseModel:
@@ -26,6 +28,7 @@ class BaseModel:
             self.id = str(uuid4())
             self.created_at = datetime.today()
             self.updated_at = datetime.today()
+            storage.new(self)
 
     def __str__(self):
         """
@@ -38,7 +41,11 @@ class BaseModel:
         """
             Save function
         """
-        self.updated_at = datetime.today()
+        if type(self.updated_at) is str:
+            self.updated_at = str(datetime.today())
+        else:
+            self.updated_at = datetime.today()
+        storage.save()
 
     def to_dict(self):
         """
