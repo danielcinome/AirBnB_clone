@@ -7,6 +7,31 @@ class HBNBCommand(cmd.Cmd):
     intro = ""
     prompt = "(hbnb) "
 
+    @staticmethod
+    def comprobation(arg, val_flag):
+        if (len(arg) == 0):
+             print("** class name missing **")
+        else:
+            try:
+                command = arg.split(" ")
+                globals()[command[0]]
+                if (len(command) == 1):
+                    print("** instance id missing **")
+                    return
+                obj = storage.all()
+                for key, value in obj.items():
+                    if (value.id == command[1]):
+                        if (val_flag == 1):
+                            print(value)
+                        elif (val_flag == 2):
+                            del obj[key]
+                            storage.save()
+                        return
+                print("** no instance found **")
+                return
+            except KeyError:
+                print("** class doesn't exist **")
+
     def do_quit(self, arg):
         "Quit command to exit the program"
         return True;
@@ -33,24 +58,72 @@ class HBNBCommand(cmd.Cmd):
 
     def do_show(self, arg):
         "Print string representation of instance"
+        HBNBCommand.comprobation(arg, 1)
+
+    def do_destroy(self, arg):
+        "Deletes an instance based on the class name and id"
+        HBNBCommand.comprobation(arg, 2)
+
+    def do_all(self, arg):
+        "Prints all string representation of all instances"
+        obj = storage.all()
+        flag = 0
+        if (len(arg) > 0):
+            flag = 1
+        for key, value in obj.items():
+            name_key = key.split(".")
+            if (name_key == arg and flag == 1):
+                print(value)
+            else:
+                print(value)
+
+    def do_update(self, arg):
+        " instance based on the class name and id"
         if (len(arg) == 0):
             print("** class name missing **")
         else:
             try:
                 command = arg.split(" ")
-                new = globals()[command[0]]()
+                globals()[command[0]]
                 if (len(command) == 1):
                     print("** instance id missing **")
                     return
                 obj = storage.all()
-                for key, value in obj.items():
-                    if (value.id == command[1]):
-                        print(value)
+                nameKey = command[0] + '.' + command[1]
+                if (nameKey in obj):
+                    if (len(command) < 3):
+                        print("** attribute name missing **")
                         return
-                print("** no instance found **")
+                    elif (len(command) < 4):
+                        print("** value missing **")
+                        return
+                    objtmp = obj[nameKey]
+                    dicObjtmp = objtmp.to_dict()
+                    if (command[3][0] ==  '"'):
+                        command[3] = str(command[3])
+                    elif ("." in command[3]):
+                        command[3] = float(command[3])
+                    elif (command[3][0] not in '"' and command[3] not in "."):
+                        command[3] = int(command[3])
+                    if (command[2] in dicObjtmp):
+                        dicTmp = {command[2]: command[3]}
+                        dicObjtmp.update(dicTmp)
+                    else:
+                        dicObjtmp[command[2]] = command[3]
+
+                    print(dicObjtmp)
+                    swap = globals()[command[0]](**dicObjtmp)
+                    print(swap)
+                    del obj[nameKey]
+                    swap.save()
+                    obj[nameKey] = swap
+                    swap.save()
+                else:
+                    print("** no instance found **")
+                    return
             except KeyError:
                 print("** class doesn't exist **")
-                
+
 
 
 
