@@ -4,8 +4,7 @@
 """
 from uuid import uuid4
 from datetime import datetime
-from models import storage
-import json
+import models
 
 
 class BaseModel:
@@ -28,7 +27,7 @@ class BaseModel:
             self.id = str(uuid4())
             self.created_at = datetime.today()
             self.updated_at = datetime.today()
-            storage.new(self)
+            models.storage.new(self)
 
     def __str__(self):
         """
@@ -45,13 +44,13 @@ class BaseModel:
             self.updated_at = str(datetime.today())
         else:
             self.updated_at = datetime.today()
-        storage.save()
+        models.storage.save()
 
     def to_dict(self):
         """
             To Dictionary function
         """
-        rDict = self.__dict__
+        rDict = self.__dict__.copy()
         rDict['created_at'] = str(self.created_at.isoformat())
         rDict['updated_at'] = str(self.updated_at.isoformat())
         dicName = {"__class__": self.__class__.__name__}
