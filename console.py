@@ -2,6 +2,11 @@
 import cmd
 from models.base_model import BaseModel
 from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 from models import storage
 
 
@@ -70,6 +75,7 @@ class HBNBCommand(cmd.Cmd):
         "Prints all string representation of all instances"
         obj = storage.all()
         flag = 0
+        val = []
         if (len(arg) > 0):
             flag = 1
             if arg not in globals():
@@ -79,9 +85,11 @@ class HBNBCommand(cmd.Cmd):
             name_key = key.split(".")
             if (flag == 1):
                 if (name_key[0] == arg and flag == 1):
-                    print(value)
+                    val.append(value.__str__())
             else:
-                print(value)
+                val.append(value.__str__())
+        if (len(val) > 1):
+            print(val)
 
     def do_update(self, arg):
         " instance based on the class name and id"
