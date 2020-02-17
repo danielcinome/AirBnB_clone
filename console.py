@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 import cmd
+import shlex
+import json
 from models.base_model import BaseModel
 from models.user import User
 from models.state import State
@@ -88,7 +90,7 @@ class HBNBCommand(cmd.Cmd):
                     val.append(value.__str__())
             else:
                 val.append(value.__str__())
-        if (len(val) > 1):
+        if (len(val) >= 1):
             print(val)
 
     def do_update(self, arg):
@@ -97,7 +99,8 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
         else:
             try:
-                command = arg.split(" ")
+                command = shlex.split(arg)
+                print(command)
                 globals()[command[0]]
                 if (len(command) == 1):
                     print("** instance id missing **")
@@ -113,11 +116,12 @@ class HBNBCommand(cmd.Cmd):
                         return
                     objtmp = obj[nameKey]
                     dicObjtmp = objtmp.to_dict()
-                    if (command[3][0] == '"'):
-                        command[3] = str(command[3])
+                    if (command[3][0].isalpha()):
+                        stri = str(command[3])
+                        command[3] = stri.replace('"', "'")
                     elif ("." in command[3]):
                         command[3] = float(command[3])
-                    elif (command[3][0] not in '"' and command[3] not in "."):
+                    elif (command[3][0] not in "'" and command[3] not in "."):
                         command[3] = int(command[3])
                     if (command[2] in dicObjtmp):
                         dicTmp = {command[2]: command[3]}
