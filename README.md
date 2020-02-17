@@ -2,7 +2,7 @@
 
 ![N|Solid](https://www.holbertonschool.com/holberton-logo.png)
 --
-![N|Solid](https://holbertonintranet.s3.amazonaws.com/uploads/medias/2018/6/65f4a1dd9c51265f49d0.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDDGGGOUZGDONYM4%2F20200217%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20200217T153532Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=8f648da1018de0fea6a4fc3d3fe548f99f167fce93085e8ad6bda4648aaef20a)
+![N|Solid](https://github.com/danielcinome/AirBnB_clone/blob/Rama1/Logo.png)
 ---
 
 ## Description
@@ -51,7 +51,10 @@ EOF  all  create  destroy  help  quit  show  update
 File Name|Class Name|Task Description
 ---|---|---
 [base_model.py](https://github.com/danielcinome/AirBnB_clone/blob/master/models/base_model.py)|BaseModel| Defines all common attributes/methods for other classes
-[file_storage.py](https://github.com/danielcinome/AirBnB_clone/blob/master/models/engine/file_storage.py) | FileStorage |Convert the dictionary representation to a JSON string. JSON is a standard representation of a data structure. 
+[file_storage.py](https://github.com/danielcinome/AirBnB_clone/blob/master/models/engine/file_storage.py) | FileStorage |Convert the dictionary representation to a JSON string. JSON is a standard representation of a data structure.
+---
+| | | |
+---|---|---
 [user.py](https://github.com/danielcinome/AirBnB_clone/blob/master/models/user.py) | User |Class User inherits from the BaseModel class, you instantiates a new user.
 
 -   `email`: string
