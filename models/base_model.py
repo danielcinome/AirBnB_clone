@@ -21,7 +21,8 @@ class BaseModel:
             dateUpdate = datetime.strptime(dateUpdate, formato)
             kwargs['created_at'] = dateCreate
             kwargs['updated_at'] = dateUpdate
-            del kwargs['__class__']
+            if "__class__" in kwargs:
+                del kwargs['__class__']
             self.__dict__.update(kwargs)
         else:
             self.id = str(uuid4())

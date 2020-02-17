@@ -6,6 +6,7 @@
 import json
 import models
 from models.base_model import BaseModel
+from models.user import User
 
 
 class FileStorage():
@@ -45,7 +46,8 @@ class FileStorage():
             with open(FileStorage.__file_path, 'r') as my_json:
                 red = json.loads(my_json.read())
                 for key, value in red.items():
-                    copy = BaseModel(**value)
+                    splKey = key.split(".")
+                    copy = globals()[splKey[0]](**value)
                     self.__objects[key] = copy
         except IOError:
             return

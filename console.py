@@ -1,7 +1,9 @@
 #!/usr/bin/python3
 import cmd
 from models.base_model import BaseModel
+from models.user import User
 from models import storage
+
 
 class HBNBCommand(cmd.Cmd):
     intro = ""
@@ -10,7 +12,7 @@ class HBNBCommand(cmd.Cmd):
     @staticmethod
     def comprobation(arg, val_flag):
         if (len(arg) == 0):
-             print("** class name missing **")
+            print("** class name missing **")
         else:
             try:
                 command = arg.split(" ")
@@ -20,7 +22,8 @@ class HBNBCommand(cmd.Cmd):
                     return
                 obj = storage.all()
                 for key, value in obj.items():
-                    if (value.id == command[1]):
+                    nameSplit = key.split(".")[0]
+                    if (value.id == command[1] and command[0] == nameSplit):
                         if (val_flag == 1):
                             print(value)
                         elif (val_flag == 2):
@@ -34,14 +37,14 @@ class HBNBCommand(cmd.Cmd):
 
     def do_quit(self, arg):
         "Quit command to exit the program"
-        return True;
+        return True
 
     def do_EOF(self, arg):
         "Quit command to exit the program\n"
-        return True;
+        return True
 
     def emptyline(self):
-        return;
+        return
 
     def do_create(self, arg):
         "Create new instance of name class"
@@ -54,7 +57,6 @@ class HBNBCommand(cmd.Cmd):
                 new.save()
             except KeyError:
                 print("** class doesn't exist **")
-
 
     def do_show(self, arg):
         "Print string representation of instance"
@@ -70,10 +72,14 @@ class HBNBCommand(cmd.Cmd):
         flag = 0
         if (len(arg) > 0):
             flag = 1
+            if arg not in globals():
+                print("** class doesn't exist **")
+                return
         for key, value in obj.items():
             name_key = key.split(".")
-            if (name_key == arg and flag == 1):
-                print(value)
+            if (flag == 1):
+                if (name_key[0] == arg and flag == 1):
+                    print(value)
             else:
                 print(value)
 
@@ -99,7 +105,7 @@ class HBNBCommand(cmd.Cmd):
                         return
                     objtmp = obj[nameKey]
                     dicObjtmp = objtmp.to_dict()
-                    if (command[3][0] ==  '"'):
+                    if (command[3][0] == '"'):
                         command[3] = str(command[3])
                     elif ("." in command[3]):
                         command[3] = float(command[3])
@@ -123,8 +129,6 @@ class HBNBCommand(cmd.Cmd):
                     return
             except KeyError:
                 print("** class doesn't exist **")
-
-
 
 
 if __name__ == '__main__':
