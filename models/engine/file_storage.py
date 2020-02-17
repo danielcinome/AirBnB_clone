@@ -10,7 +10,9 @@ from models.user import User
 
 
 class FileStorage():
-
+    """
+        Class FileStorage
+    """
     __file_path = 'file.json'
     __objects = {}
 
