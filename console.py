@@ -143,6 +143,9 @@ class HBNBCommand(cmd.Cmd):
 
     @staticmethod
     def checkString(str):
+        """
+
+        """
         count = 0
         for i in str:
             if (i.isalpha()):
@@ -151,21 +154,16 @@ class HBNBCommand(cmd.Cmd):
                 return True
         return False
 
-    def do_User(self, arg):
-        HBNBCommand.type_class('User', arg)
-
-    def do_BaseModel(self, arg):
-        HBNBCommand.type_class('BaseModel', arg)
-
-    @staticmethod
-    def type_class(t_class, arg):
+    def default(self, line):
         """
-        identify action type <class name>.action_name()
-        """
-        name_key = arg.split(".")
-        if (name_key[1] == 'all()'):
-            HBNBCommand.do_all(all, t_class)
 
+        """
+        try:
+            type_class = line.split('.')
+            if (type_class[1] == 'all()'):
+                HBNBCommand.do_all(all, type_class[0])
+        except:
+            return
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
