@@ -151,6 +151,21 @@ class HBNBCommand(cmd.Cmd):
                 return True
         return False
 
+    def do_User(self, arg):
+        HBNBCommand.type_class('User', arg)
+
+    def do_BaseModel(self, arg):
+        HBNBCommand.type_class('BaseModel', arg)
+
+    @staticmethod
+    def type_class(t_class, arg):
+        """
+        identify action type <class name>.action_name()
+        """
+        name_key = arg.split(".")
+        if (name_key[1] == 'all()'):
+            HBNBCommand.do_all(all, t_class)
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
