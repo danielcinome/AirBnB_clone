@@ -8,7 +8,9 @@ import models
 
 
 class BaseModel:
-
+    """
+        Class BaseModel
+    """
     def __init__(self, *args, **kwargs):
         """
             Contructor
