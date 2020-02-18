@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+"""
+command interpreter
+"""
 import cmd
 import shlex
 import json
@@ -13,11 +16,18 @@ from models import storage
 
 
 class HBNBCommand(cmd.Cmd):
+    """
+    command interpreter
+    """
     intro = ""
     prompt = "(hbnb) "
 
     @staticmethod
     def comprobation(arg, val_flag):
+        """
+        Comprobation of conditions needed
+        for command destroy and show
+        """
         if (len(arg) == 0):
             print("** class name missing **")
         else:
@@ -43,18 +53,30 @@ class HBNBCommand(cmd.Cmd):
                 print("** class doesn't exist **")
 
     def do_quit(self, arg):
+        """
+        Command exit the program
+        """
         "Quit command to exit the program"
         return True
 
     def do_EOF(self, arg):
+        """
+        Command to exit the program
+        """
         "Quit command to exit the program\n"
         return True
 
     def emptyline(self):
+        """
+        New line if it's empty line
+        """
         return
 
     def do_create(self, arg):
-        "Create new instance of name class"
+        """
+        Create new instance of one name class
+        """
+        "Create new instance of one name class"
         if (len(arg) == 0):
             print("** class name missing **")
         else:
@@ -66,14 +88,23 @@ class HBNBCommand(cmd.Cmd):
                 print("** class doesn't exist **")
 
     def do_show(self, arg):
+        """
+        Print string representation of instance
+        """
         "Print string representation of instance"
         HBNBCommand.comprobation(arg, 1)
 
     def do_destroy(self, arg):
+        """
+        Deletes an instance based on the class name and id
+        """
         "Deletes an instance based on the class name and id"
         HBNBCommand.comprobation(arg, 2)
 
     def do_all(self, arg):
+        """
+        Prints all string representation of all instances
+        """
         "Prints all string representation of all instances"
         obj = storage.all()
         flag = 0
@@ -94,7 +125,10 @@ class HBNBCommand(cmd.Cmd):
             print(val)
 
     def do_update(self, arg):
-        " instance based on the class name and id"
+        """
+        instance based on the class name and id
+        """
+        "instance based on the class name and id"
         if (len(arg) == 0):
             print("** class name missing **")
         else:
@@ -144,7 +178,7 @@ class HBNBCommand(cmd.Cmd):
     @staticmethod
     def checkString(str):
         """
-
+        Check is parameter of updtade is a string
         """
         count = 0
         for i in str:
@@ -156,14 +190,15 @@ class HBNBCommand(cmd.Cmd):
 
     def default(self, line):
         """
-
+        Call on an input line when the command prefix is not recognized
         """
         try:
             type_class = line.split('.')
             if (type_class[1] == 'all()'):
                 HBNBCommand.do_all(all, type_class[0])
-        except:
+        except Exception:
             return
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
