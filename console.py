@@ -116,10 +116,9 @@ class HBNBCommand(cmd.Cmd):
                         return
                     objtmp = obj[nameKey]
                     dicObjtmp = objtmp.to_dict()
-                    if (command[3][0].isalpha()):
+                    if (HBNBCommand.checkString(command[3])):
                         stri = str(command[3])
-                        command[3] = stri.replace('"', "'")
-                    elif ("." in command[3]):
+                    elif ("." in command[3] and command[3].count('.') == 1):
                         command[3] = float(command[3])
                     elif (command[3][0] not in "'" and command[3] not in "."):
                         command[3] = int(command[3])
@@ -143,5 +142,15 @@ class HBNBCommand(cmd.Cmd):
                 print("** class doesn't exist **")
 
 
+    @staticmethod
+    def checkString(str):
+        count = 0
+        for i in str:
+            if (i.isalpha()):
+                count = count + 1
+            if (count >= 2):
+                return True
+        return False
+    
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
