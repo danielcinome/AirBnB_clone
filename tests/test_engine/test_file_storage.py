@@ -14,7 +14,6 @@ from models.review import Review
 from models.engine.file_storage import FileStorage
 
 
-
 class TestFileStorage(unittest.TestCase):
     '''this will test the FileStorage'''
 
@@ -48,7 +47,7 @@ class TestFileStorage(unittest.TestCase):
         style = pep8.StyleGuide(quiet=True)
         p = style.check_files(['models/engine/file_storage.py'])
         self.assertEqual(p.total_errors, 0, "fix pep8")
-    
+
     def test_docstring(self):
         """
         Test docstring
@@ -114,4 +113,3 @@ class TestFileStorage(unittest.TestCase):
             for line in r:
                 self.assertEqual(line, "{}")
         self.assertIs(self.storage.reload(), None)
-

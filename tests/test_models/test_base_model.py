@@ -2,6 +2,8 @@
 """Test Base Model"""
 import unittest
 import pep8
+from datetime import datetime
+import uuid
 from models.base_model import BaseModel
 from models.city import City
 from models.place import Place
@@ -9,8 +11,11 @@ from models.amenity import Amenity
 from models.state import State
 from models.review import Review
 
+
 class Testpep8(unittest.TestCase):
-    
+    """
+        Teste
+    """
     def test_pep8_conformance_base_model(self):
         """Test that we conform to PEP8."""
         pep8style = pep8.StyleGuide(quiet=True)
@@ -18,15 +23,17 @@ class Testpep8(unittest.TestCase):
         self.assertEqual(result.total_errors, 0,
                       "Found code style errors (and warnings).")
 
-class Testbasemodel(unittest.TestCase):
-
+class TestBasemodel(unittest.TestCase):
+    """Class baseModel"""
     def test_creation_from_dictionary_basic(self):
-        """ This function proves in a basic way that when instantiating\
+        """ This function proves in a basic way that when instantiating
             by passing a dictionary, it works correctly """
         date = datetime.now()
-        dic = {"id": "7734cf23-6c89-4662-8483-284727324c77", "created_at":
-            "2020-02-17T16:32:39.023915", "updated_at":
-            "2020-02-17T16:32:39.023940", "__class__": "BaseModel"}
+        dic = {"id": "7734cf23-6c89-4662-8483-284727324c77",
+                "created_at": "2020-02-17T16:32:39.023915",
+                "updated_at": "2020-02-17T16:32:39.023940",
+                "__class__": "BaseModel"
+        }
         my_base = BaseModel(**dic)
         self.assertEqual(my_base.__class__.__name__, "BaseModel")
         self.assertEqual(my_base.id, "7734cf23-6c89-4662-8483-284727324c77")
@@ -34,7 +41,7 @@ class Testbasemodel(unittest.TestCase):
         self.assertEqual(type(my_base.updated_at), type(date))
 
     def test_creation_from_dictionary_advanced(self):
-        """ This function proves that when passing a dictionary with\
+        """ This function proves that when passing a dictionary with
             extra attributes, these are added correctly """
         date = datetime.now()
         dic = {"id": "7734cf23-6c89-4662-8483-284727324c77", "created_at":
