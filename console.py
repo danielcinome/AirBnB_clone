@@ -141,7 +141,6 @@ class HBNBCommand(cmd.Cmd):
             except KeyError:
                 print("** class doesn't exist **")
 
-
     @staticmethod
     def checkString(str):
         count = 0
@@ -151,6 +150,7 @@ class HBNBCommand(cmd.Cmd):
             if (count >= 2):
                 return True
         return False
-    
+
+
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
