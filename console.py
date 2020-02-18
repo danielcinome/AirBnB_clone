@@ -141,7 +141,6 @@ class HBNBCommand(cmd.Cmd):
             except KeyError:
                 print("** class doesn't exist **")
 
-
     @staticmethod
     def checkString(str):
         count = 0
@@ -154,7 +153,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_User(self, arg):
         HBNBCommand.type_class('User', arg)
-    
+
     def do_BaseModel(self, arg):
         HBNBCommand.type_class('BaseModel', arg)
 
@@ -166,7 +165,7 @@ class HBNBCommand(cmd.Cmd):
         name_key = arg.split(".")
         if (name_key[1] == 'all()'):
             HBNBCommand.do_all(all, t_class)
-    
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
