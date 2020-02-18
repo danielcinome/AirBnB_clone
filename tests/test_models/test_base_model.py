@@ -3,7 +3,6 @@
 import unittest
 from datetime import datetime
 import uuid
-import os
 from models.base_model import BaseModel
 import pep8
 from models.city import City
