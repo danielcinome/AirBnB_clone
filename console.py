@@ -210,6 +210,17 @@ class HBNBCommand(cmd.Cmd):
                 s = type_class[1]
                 st = type_class[0] + " " + s[s.find("(") + 2:s.find(")") - 1]
                 HBNBCommand.do_destroy(self, st)
+            elif (type_class[1][:6] == 'update'
+                    and type_class[1].count("{") == 1):
+                split = line.split(",", 1)
+                getId = type_class[1].split(",")
+                getId = getId[0][getId[0].find("(") + 2:getId[0].find(")")]
+                dit = eval(split[1][:-1])
+                getId = str(type_class[0]) + " " + str(getId)
+                for key, value in dit.items():
+                    setC = getId + " " + key + " " + str(value)
+                    print(setC)
+                    HBNBCommand.do_update(self, setC)
             elif (type_class[1][:6] == 'update'):
                 token = type_class[1]
                 token_update = token[token.find("(") + 1:token[1].find(")")]
