@@ -120,4 +120,4 @@ class TestFileStorage(unittest.TestCase):
         """
         Test to see if the file_self.path exist
         """
-        self.assertEqual(FileStorage._fileStorage__file_path, self.path)
+        self.assertEqual(FileStorage._FileStorage__file_path, self.path)
