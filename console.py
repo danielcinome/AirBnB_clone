@@ -203,6 +203,10 @@ class HBNBCommand(cmd.Cmd):
                     if (key.split(".")[0] == type_class[0]):
                         count = count + 1
                 print(count)
+            elif (type_class[1][:4] == 'show'):
+                token_show = type_class[0] + ' ' + type_class[1][6:-2]
+                HBNBCommand.do_show(self, token_show)
+
             elif (type_class[1][:7] == 'destroy'):
                 s = type_class[1]
                 st = type_class[0] + " " + s[s.find("(") + 2:s.find(")") - 1]
