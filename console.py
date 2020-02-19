@@ -2,6 +2,7 @@
 """
 command interpreter
 """
+import re
 import cmd
 import shlex
 import json
@@ -164,7 +165,6 @@ class HBNBCommand(cmd.Cmd):
 
                     print(dicObjtmp)
                     swap = globals()[command[0]](**dicObjtmp)
-                    print(swap)
                     del obj[nameKey]
                     swap.save()
                     obj[nameKey] = swap
@@ -206,11 +206,16 @@ class HBNBCommand(cmd.Cmd):
             elif (type_class[1][:4] == 'show'):
                 token_show = type_class[0] + ' ' + type_class[1][6:-2]
                 HBNBCommand.do_show(self, token_show)
-
             elif (type_class[1][:7] == 'destroy'):
                 s = type_class[1]
                 st = type_class[0] + " " + s[s.find("(") + 2:s.find(")") - 1]
                 HBNBCommand.do_destroy(self, st)
+            elif (type_class[1][:6] == 'update'):
+                token = type_class[1]
+                token_update = token[token.find("(") + 1:token[1].find(")")]
+                token_update = re.sub(',|"', '', token_update)
+                token_update = type_class[0] + ' ' + token_update
+                HBNBCommand.do_update(self, token_update)
         except Exception:
             return
 
