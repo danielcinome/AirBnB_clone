@@ -122,3 +122,9 @@ class Testbasemodel(unittest.TestCase):
         new_dict["updated_at"] = new_dict["updated_at"].isoformat()
         comparing = obj.to_dict()
         self.assertDictEqual(new_dict, comparing)
+
+    def test_save_BaseModel(self):
+        """test if the save method works"""
+        obj = BaseModel()
+        obj.save()
+        self.assertNotEqual(obj.created_at, obj.updated_at)
