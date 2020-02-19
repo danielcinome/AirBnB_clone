@@ -5,6 +5,7 @@ import pep8
 import json
 import os
 import uuid
+from uuid import uuid4
 from datetime import datetime
 from models.base_model import BaseModel
 from models.user import User
