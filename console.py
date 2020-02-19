@@ -196,6 +196,13 @@ class HBNBCommand(cmd.Cmd):
             type_class = line.split('.')
             if (type_class[1] == 'all()'):
                 HBNBCommand.do_all(all, type_class[0])
+            elif (type_class[1] == 'count()'):
+                count = 0
+                obj = storage.all()
+                for key in obj:
+                    if (key.split(".")[0] == type_class[0]):
+                        count = count + 1
+                print(count)
         except Exception:
             return
 
