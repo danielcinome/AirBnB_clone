@@ -122,3 +122,20 @@ class TestFileStorage(unittest.TestCase):
         Test to see if the file_self.path exist
         """
         self.assertEqual(FileStorage._FileStorage__file_path, self.path)
+
+    def test_save(self):
+        """
+        Testing the save method
+        """
+        bm = BaseModel()
+        bm.save()
+        self.assertTrue(os.path.exists(self.path))
+        bm.name = "Testing"
+        bm.number = 1
+        bm.save()
+        self.assertTrue(os.path.exists(self.path))
+        dic = {}
+        with open('file.json', 'r') as fjson:
+            dic = json.loads(fjson.read())
+        bm_key = bm.__class__.__name__ + '.' + bm.id
+        self.assertDictEqual(bm.to_dict(), dic[bm_key])
