@@ -49,6 +49,12 @@ class BaseModel:
             self.updated_at = datetime.today()
         models.storage.save()
 
+    def delete(self):
+        """
+        Method to deletes an instance based on the class
+        """
+        models.storage.delete(self)
+
     def to_dict(self):
         """
             To Dictionary function
