@@ -128,3 +128,88 @@ class Testbasemodel(unittest.TestCase):
         obj = BaseModel()
         obj.save()
         self.assertNotEqual(obj.created_at, obj.updated_at)
+
+    def test_checking_for_docstring_BaseModel(self):
+        """checking for docstrings"""
+        self.assertIsNotNone(BaseModel.__doc__)
+        self.assertIsNotNone(BaseModel.__init__.__doc__)
+        self.assertIsNotNone(BaseModel.__str__.__doc__)
+        self.assertIsNotNone(BaseModel.save.__doc__)
+        self.assertIsNotNone(BaseModel.to_dict.__doc__)
+
+    def test_method_BaseModel(self):
+        """checking if Basemodel have methods"""
+        self.assertTrue(hasattr(BaseModel, "__init__"))
+        self.assertTrue(hasattr(BaseModel, "save"))
+        self.assertTrue(hasattr(BaseModel, "to_dict"))
+
+    def test_to_dict_BaseModel(self):
+        """test if to_dictionary method works"""
+        base_dict = self.base.to_dict()
+        self.assertEqual(self.base.__class__.__name__, 'BaseModel')
+        self.assertIsInstance(base_dict['created_at'], str)
+        self.assertIsInstance(base_dict['updated_at'], str)
+
+    def test_base_model_updated_at_is_datetime(self):
+        """Datetime test.
+        This test is designed to check if the date and time in which a
+        class is updated are correctly assigned.
+        """
+        bm = BaseModel()
+        self.assertIsInstance(bm.updated_at, datetime)
+
+    def test_base_model_created_at_is_datetime(self):
+        """Datetime test.
+        This test is designed to check if the date and time in which a
+        class was created are correctly assigned.
+        """
+        bm = BaseModel()
+        self.assertIsInstance(bm.created_at, datetime)
+
+    def test_base_model_different_uuid(self):
+        """...
+        ...
+        ...
+        """
+        bm_one = BaseModel()
+        bm_two = BaseModel()
+        conv_uuid_one = uuid.UUID(bm_one.id)
+        conv_uuid_two = uuid.UUID(bm_two.id)
+        self.assertNotEqual(conv_uuid_one, conv_uuid_two)
+
+    def test_base_model_id_is_string(self):
+        """UUID format testing.
+        This test is designed to check if any generated UUID
+        is correctly generated and has the propper format.
+        """
+        bm = BaseModel()
+        self.assertIsInstance(bm.id, str)
+
+    def test_base_model_uuid_good_format(self):
+        """...
+        ...
+        ...
+        """
+        bm = BaseModel()
+        self.assertIsInstance(uuid.UUID(bm.id), uuid.UUID)
+
+    def test_base_model_uuid_wrong_format(self):
+        """...
+        ...
+        ...
+        """
+        bm = BaseModel()
+        bm.id = 'Monty Python'
+        warn = 'badly formed hexadecimal UUID string'
+        with self.assertRaises(ValueError) as msg:
+            uuid.UUID(bm.id)
+        self.assertEqual(warn, str(msg.exception))
+
+    def test_base_model_uuid_version(self):
+        """...
+        ...
+        ...
+        """
+        bm = BaseModel()
+        conv_uuid = uuid.UUID(bm.id)
+        self.assertEqual(conv_uuid.version, 4)
