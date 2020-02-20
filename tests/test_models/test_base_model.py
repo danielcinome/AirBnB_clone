@@ -143,13 +143,6 @@ class Testbasemodel(unittest.TestCase):
         self.assertTrue(hasattr(BaseModel, "save"))
         self.assertTrue(hasattr(BaseModel, "to_dict"))
 
-    def test_to_dict_BaseModel(self):
-        """test if to_dictionary method works"""
-        base_dict = self.base.to_dict()
-        self.assertEqual(self.base.__class__.__name__, 'BaseModel')
-        self.assertIsInstance(base_dict['created_at'], str)
-        self.assertIsInstance(base_dict['updated_at'], str)
-
     def test_base_model_updated_at_is_datetime(self):
         """Datetime test.
         This test is designed to check if the date and time in which a
