@@ -103,7 +103,24 @@ File Name|Class Name|Task Description
 
 
 ---
+## Example
 
+`(hbnb) create User`
+
+![Imagen](https://i.ibb.co/LxN30xW/Screen-Shot-2020-02-20-at-11-21-24-AM.png)
+
+`(hbnb) show User <ID>`
+
+![Imagen](https://i.ibb.co/TRh3YSH/Screen-Shot-2020-02-20-at-11-24-28-AM.png)
+
+`(hbnb) update User <ID> <Attribute> <Value>`
+
+![Imagen](https://i.ibb.co/WpmL4TN/Screen-Shot-2020-02-20-at-11-26-28-AM.png)
+
+`(hbnb) destroy User <ID>`
+
+![Imagen](https://i.ibb.co/Gpvgct1/Screen-Shot-2020-02-20-at-11-29-59-AM.png)
+---
 ## Author
 
 - Daniel Angarita Chinome [@danielchinome](https://twitter.com/danielchinome)
