@@ -210,8 +210,8 @@ class HBNBCommand(cmd.Cmd):
                 s = type_class[1]
                 st = type_class[0] + " " + s[s.find("(") + 2:s.find(")") - 1]
                 HBNBCommand.do_destroy(self, st)
-            elif (type_class[1][:6] == 'update'
-                    and type_class[1].count("{") == 1):
+            elif (type_class[1][:6] == 'update'and
+                    type_class[1].count("{") == 1):
                 split = line.split(",", 1)
                 getId = type_class[1].split(",")
                 getId = getId[0][getId[0].find("(") + 2:getId[0].find(")")]
