@@ -31,10 +31,11 @@ h4 {
 }
 .popover {
     display: none;
-    background-color: #fafafa;
+    background-color: #FAFAFA;
     border: #DDDDDD 1px solid;
     border-radius: 4px;
     padding: 10% 0% 10% 10%;
+    position: relative;
 }
 .popover li ul {
     margin-bottom: 10px;
