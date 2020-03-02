@@ -8,4 +8,5 @@ body {
 .container {
     width: 1000px;
     margin: 30px auto;
+    margin-bottom: 100px;
 }
