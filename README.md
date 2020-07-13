@@ -2,7 +2,7 @@
 
 ![N|Solid](https://www.holbertonschool.com/holberton-logo.png)
 --
-![N|Solid](https://github.com/danielcinome/AirBnB_clone/blob/Rama1/Logo.png)
+![N|Solid](https://github.com/danielcinome/AirBnB_clone/blob/master/web_static/images/logo.png)
 ---
 
 ## Description
@@ -11,7 +11,7 @@
 -   manage (create, update, destroy, etc) objects via a console / command interpreter
 -   store and persist objects to a file (JSON file)
 
-The first piece is to manipulate a powerful storage system. This storage engine will give us an abstraction between “My object” and “How they are stored and persisted”. This means: from your console code (the command interpreter itself)
+The first piece is to manipulate a powerful storage system. This storage engine will give us an abstraction between My object and How they are stored and persisted. This means: from your console code (the command interpreter itself)
 
 
 ## Task Project
@@ -21,7 +21,7 @@ command interpreter [base_model.py](https://github.com/danielcinome/AirBnB_clone
 -   `quit`  and  `EOF`  to exit the program
 -   `help`  (this action is provided by default by  `cmd`  but you should keep it updated and documented)
 -   a custom prompt:  `(hbnb)`
--   an empty line +  `ENTER`  shouldn’t execute anything
+-   an empty line +  `ENTER`  shouldnt execute anything
 
 ```
 (hbnb) help
@@ -33,19 +33,19 @@ EOF  all  create  destroy  help  quit  show  update
 ```
 
 - `create`: Creates a new instance of `Class_name`, saves it (to the JSON file). Ex:
-	-  `(hbnb) create BaseModel`
+        -  `(hbnb) create BaseModel`
 
--  `show`: Prints the string representation of an instance based on the class name and `id`. Ex: 
-	- `(hbnb) show BaseModel 1234-1234-1234`.
+-  `show`: Prints the string representation of an instance based on the class name and `id`. Ex:
+        - `(hbnb) show BaseModel 1234-1234-1234`.
 
-- `destroy`: Deletes an instance based on the class name and `id` (save the change into the JSON file). Ex: 
-	- `(hbnb) destroy BaseModel 1234-1234-1234`.
+- `destroy`: Deletes an instance based on the class name and `id` (save the change into the JSON file). Ex:
+        - `(hbnb) destroy BaseModel 1234-1234-1234`.
 
 - `all`: Prints all string representation of all instances based or not on the class name. Ex:
-	- `(hbnb) all BaseModel` or `$ all`.
+        - `(hbnb) all BaseModel` or `$ all`.
 
 - `update`: Updates an instance based on the class name and `id` by adding or updating attribute (save the change into the JSON file). Ex:
-	- `(hbnb) update BaseModel 1234-1234-1234 email "aibnb@holbertonschool.com"`.
+        - `(hbnb) update BaseModel 1234-1234-1234 email "aibnb@holbertonschool.com"`.
 
 ---
 File Name|Class Name|Task Description
@@ -122,7 +122,5 @@ File Name|Class Name|Task Description
 ![Imagen](https://i.ibb.co/Gpvgct1/Screen-Shot-2020-02-20-at-11-29-59-AM.png)
 ---
 ## Author
-
-- Daniel Angarita Chinome [@danielchinome](https://twitter.com/danielchinome)
-
-- Giovanni Perez. [@Giovanni_Perez1](https://twitter.com/Giovanni_Perez1)
+- Daniel Chinome - [Github](https://github.com/danielcinome) / [Twitter](https://twitter.com/DanielChinome)
+- Giovanni Perez -  [Github](https://github.com/Bard-Budist) / [Twitter](https://twitter.com/Giovanni_Perez1)
